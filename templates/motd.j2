@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo -e "\nAnsible Infos:"
+{% for item in motd_info %}
+{% for key, value in item.iteritems() %}
+echo "  {{ key }}{{ value }}"
+{% endfor %}
+{% endfor %}
+
+echo ""

@@ -1,0 +1,37 @@
+---
+
+forceAptUpdate: true
+
+common_pkg:
+  - aptitude
+  - vim
+  - python-dev
+  - htop
+  - screen
+  - git
+  - unzip
+  - postfix
+  - locales
+  - language-pack-fr
+  - dnstop
+  - dnsutils
+  - htop
+  - iftop
+  - iotop
+  - dstat
+  - bsdmailx
+  - ncdu
+  - tree
+  - tracereoute
+  - sysstat
+
+extra_common_pkg: []
+
+
+# Default information to show under the ASCII art
+motd_info:
+  - "FQDN:    ": "{{ ansible_fqdn }}"
+  - "Distro:  ": "{{ ansible_distribution }} {{ ansible_distribution_version }} {{ ansible_distribution_release }}"
+  - "Virtual: ": "{{ 'YES' if ansible_virtualization_role == 'guest' else 'NO' }}\n"
+  - "CPUs:    ": "{{ ansible_processor_vcpus }}"
+  - "RAM:     ": "{{ (ansible_memtotal_mb / 1000) | round(1) }}GB"
