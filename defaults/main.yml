@@ -19,10 +19,10 @@ common_pkg:
   - iftop
   - iotop
   - dstat
-  - bsdmailx
+  - bsd-mailx
   - ncdu
   - tree
-  - tracereoute
+  - traceroute
   - sysstat
 
 extra_common_pkg: []
