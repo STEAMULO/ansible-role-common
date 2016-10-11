@@ -11,21 +11,9 @@ Ubuntu 14.04
 
 Role Variables
 --------------
-
-
-  # Forcer le apt-get update
-  forceAptUpdate: true
   
   # Liste des paquets par défaut à installer
-  common_pkg:
-    - aptitude
-    - vim
-    - python-dev
-    - htop
-    - screen
-    - git
-    - unzip
-    - postfix
+  common_pkg: []
   # Autres paquets à installer en plus des par défaut
   extra_common_pkg: []
 

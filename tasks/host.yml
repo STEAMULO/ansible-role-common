@@ -1,0 +1,11 @@
+- name: Set the hostname with {{ hostname }}
+  hostname: 
+    name: "{{ hostname }}"
+
+- name: Add hostname to /etc/hosts
+  lineinfile:
+    dest: /etc/hosts
+    line: '127.0.1.1 {{ hostname }}'
+    regexp: '^127\.0\.1\.1'
+    insertafter: '^127\.0\.0\.1'
+    state: present

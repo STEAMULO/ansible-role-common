@@ -1,0 +1,13 @@
+// Automatically upgrade security packages
+Unattended-Upgrade::Allowed-Origins {
+        "${distro_id}:${distro_codename}-security";
+}
+
+// Send mail to root
+Unattended-Upgrade::Mail "root";
+
+// Do not reboot automatically
+Unattended-Upgrade::Automatic-Reboot "false";
+
+// Limit the download spee to 70kb/s
+Acquire::http::Dl-Limit "70";

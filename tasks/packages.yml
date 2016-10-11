@@ -1,0 +1,10 @@
+- name: Update apt cache
+  apt:
+    update_cache: yes
+
+- name: Install common_pkg and extra_common_pkg packages
+  apt:
+    pkg: "{{ item }}"
+    state: present
+  with_items: "{{ common_pkg | union(extra_common_pkg) }}"
+

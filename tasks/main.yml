@@ -1,60 +1,19 @@
----
-  - assert:
-      that:
-        - "hostname is defined"
+- include: packages.yml
+  tags: packages
 
-# Regeneration des caches apt
-  - name: Force Regenerate apt-cache
-    apt: update_cache=yes
-    when: forceAptUpdate is defined and forceAptUpdate
+- include: unattended-upgrades.yml
+  tags: unattended-upgrades
 
-# Installation des packages de base demandes
-  - name: install default packages with 24h cache
-    apt: pkg={{ item }} state=installed cache_valid_time=864000
-    with_items: common_pkg | union(extra_common_pkg)
-    when: common_pkg is defined
-    register: apt_result
-    ignore_errors: True
+- include: ntp.yml
+  tags: ntp
 
-# Des fois les machines ne gèrent pas bien le cache de 24h, donc si on a un souci avec un paquet on relance sans cache
-  - name: install default packages without cache
-    apt: pkg={{ item }} state=installed
-    with_items: common_pkg | union(extra_common_pkg)
-    when: apt_result.failed and common_pkg is defined
+- include: locale.yml
+  tags: locale
 
-# Ensure a locale exists.
-  - name: Install french local
-    command: locale-gen --purge fr_FR.UTF-8
-    when: ansible_os_family == "Debian"
-    #locale_gen: name=fr_FR.UTF-8 state=present
+- include: host.yml
+  when: "hostname is defined"
+  tags: host
 
-  - name: Set the hostname with {{ hostname }}
-    hostname: name={{ hostname }}
+- include: motd.yml
+  tags: motd
 
-  - name: Add hostname to /etc/hosts
-    lineinfile:
-      dest=/etc/hosts
-      line='127.0.1.1 {{ hostname }}'
-      regexp='^127\.0\.1\.1'
-      insertafter='^127\.0\.0\.1'
-      state=present
-
-  - name: Install figlet package
-    apt: name=figlet state=latest
-    tags: motd
-
-  - debug: var=ansible_env.SUDO_USER
-    tags: motd
-
-  - name: MOTD dynamic
-    become: false
-    synchronize: src="update-motd.d/" dest="/etc/update-motd.d" delete=yes recursive=yes use_ssh_args=no rsync_path="sudo rsync"
-    tags: motd
-
-  - name: MOTD Ansible
-    template: src="motd.j2" dest="/etc/update-motd.d/90-ansibleinfos"
-    tags: motd
-
-  - name: Set execution rights on motd
-    file: path="/etc/update-motd.d" mode="u+x,g+x,o+x" recurse=yes
-    tags: motd

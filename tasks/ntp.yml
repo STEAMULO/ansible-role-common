@@ -1,0 +1,6 @@
+
+- name: Install ntp daemon
+  apt:
+    pkg: ntp
+    state: latest
+  notify: Restart ntpd
