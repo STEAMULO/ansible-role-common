@@ -1,0 +1,8 @@
+
+- hosts: vagrant-machine
+  name: Test role
+  become: true
+  roles:
+    - ../../ansible-role-common
+  vars_files:
+    - test-var

@@ -1,7 +1,3 @@
----
-
-forceAptUpdate: true
-
 common_pkg:
   - aptitude
   - vim
@@ -24,9 +20,14 @@ common_pkg:
   - tree
   - traceroute
   - sysstat
+  - ngrep
+  - mc
+  - mtr
+  - nload
+  - memstat
+  - dtrx
 
 extra_common_pkg: []
-
 
 # Default information to show under the ASCII art
 motd_info:

@@ -1,0 +1,23 @@
+- name: Install figlet package
+  apt: name=figlet state=latest
+
+- name: "Configure MOTD : header, sysinfo, updates, footer"
+  copy:
+    src: "update-motd.d/{{ item }}"
+    dest: "/etc/update-motd.d/{{ item }}"
+  with_items:
+    - 00-header
+    - 10-sysinfo
+    - 20-updates
+    - 99-footer
+
+- name: "Configure MOTD : ansible info"
+  template:
+    src: "motd.j2"
+    dest: "/etc/update-motd.d/90-ansibleinfos"
+
+- name: Set execution rights on motd
+  file:
+    path: "/etc/update-motd.d"
+    mode: "u+x,g+x,o+x"
+    recurse: yes

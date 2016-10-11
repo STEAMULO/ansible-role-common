@@ -1,0 +1,5 @@
+- name: Generate french local
+  command: locale-gen --purge fr_FR.UTF-8
+
+- name: Install french local
+  command: update-locale LANG=fr_FR.UTF-8
