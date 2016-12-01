@@ -1,6 +1,9 @@
 - name: Install figlet package
   apt: name=figlet state=latest
 
+- name: Create MOTD dir
+  file: path="/etc/update-motd.d" state=directory
+
 - name: "Configure MOTD : header, sysinfo, updates, footer"
   copy:
     src: "update-motd.d/{{ item }}"
