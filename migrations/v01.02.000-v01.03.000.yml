@@ -1,0 +1,7 @@
+---
+
+- name: Delete apt-conf files
+  file: path="{{ item }}" state=absent
+  with_items:
+    - /etc/apt/apt.conf.d/50unattended-upgrades
+    - /etc/apt/apt.conf.d/10periodic

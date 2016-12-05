@@ -1,9 +1,6 @@
 - include: packages.yml
   tags: packages
 
-- include: unattended-upgrades.yml
-  tags: unattended-upgrades
-
 - include: ntp.yml
   tags: ntp
 

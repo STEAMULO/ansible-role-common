@@ -1,9 +1,0 @@
-- name: Enable APT automatic update
-  copy:
-    src: unattended-upgrade/10periodic
-    dest: /etc/apt/apt.conf.d/10periodic
-
-- name: Adjust APT automatic update configuration
-  copy:
-    src: unattended-upgrade/50unattended-upgrades
-    dest: /etc/apt/apt.conf.d/50unattended-upgrades
