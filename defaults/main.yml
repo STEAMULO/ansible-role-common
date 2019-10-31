@@ -29,6 +29,9 @@ common_pkg:
 
 extra_common_pkg: []
 
+# Timezone
+common_timezone: "Etc/UTC"
+
 # Default information to show under the ASCII art
 motd_info:
   - "FQDN:    ": "{{ ansible_fqdn }}"
