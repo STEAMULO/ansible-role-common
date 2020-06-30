@@ -9,3 +9,4 @@
     regexp: '^127\.0\.1\.1'
     insertafter: '^127\.0\.0\.1'
     state: present
+  when: common_add_hostname_loopback_res

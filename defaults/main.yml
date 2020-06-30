@@ -29,6 +29,8 @@ common_pkg:
 
 extra_common_pkg: []
 
+common_add_hostname_loopback_res: true
+
 # Timezone
 common_timezone: "Etc/UTC"
 
